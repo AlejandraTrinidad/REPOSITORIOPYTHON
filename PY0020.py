@@ -1,9 +1,3 @@
-#PY0020: Crea una calculadora que haga las operaciones de sumar multiplicar dividir y restar de dos números enteros introducidos por teclado. 
-#El resultado se dará en dos decimales. 
-#Debe ofrecerse el menú mientras el usuario no escriba “salir”. Dará igual que sea mayúsculas o minúsculas o que tenga espacios por delante y por detrás.
-#Controlar que son números enteros los que se mete. 
-#Controlar que la división por cero es un error.
-
 def calculadora():
     while True:
         try:
