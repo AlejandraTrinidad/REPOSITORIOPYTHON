@@ -30,6 +30,8 @@ limite = 6
 total_ejecuciones = 0
 
 while True:
+    opcion_salir = False
+    operacion_correcta = False
     try:
         print("MENÚ. Elija una de las siguientes opciones marcando su número: ")
         print("1. Imprimir alfabéticamente en orden ascendente ")
@@ -41,46 +43,47 @@ while True:
         respuesta = int(input("Elija una opción: "))
 
         if respuesta < 1 or respuesta > 5:
-            print("Error: Debe ingresar un número entero entre 1 y 5.\n")
+            print("Debe ingresar un número entero entre 1 y 5.\n")
             continue
-
-        opcion_salir = False
-        operacion_correcta = True
 
         if respuesta == 1:
             print(sorted(lista_paises))
             print("\n")
+            operacion_correcta = True
 
         elif respuesta == 2:
             print(sorted(lista_paises, reverse=True))
             print("\n")
+            operacion_correcta = True
 
         elif respuesta == 3:
             if len(lista_paises) >= limite:
-                print(f"Error: La lista ya ha alcanzado el límite máximo de {limite} países.")
+                print(f"La lista ya ha alcanzado el límite máximo de {limite} países.")
             else:
                 nuevo_pais = input("Dime el nombre del país que quieres añadir: ").strip().capitalize()
                 
                 if nuevo_pais == "":
-                    print("Error: No se puede añadir un país nulo/vacío.")
+                    print("No se puede añadir un país nulo/vacío.")
                 elif nuevo_pais in lista_paises:
-                    print(f'Error: El país "{nuevo_pais}" ya se encuentra en la lista (no se admiten repetidos).')
+                    print(f'El país "{nuevo_pais}" ya se encuentra en la lista (no se admiten repetidos).')
                 else:
                     lista_paises.append(nuevo_pais)
-                    print(f'Confirmación: Se ha añadido "{nuevo_pais}" correctamente.')
+                    print(f'Se ha añadido "{nuevo_pais}" correctamente.')
                     print("Lista de países actual:", lista_paises)
                     print("\n")
+                    operacion_correcta = True
 
         elif respuesta == 4:
             pais_eliminar = input("Dime el nombre del país que quieres eliminar: ").strip().capitalize()
             
             if pais_eliminar not in lista_paises:
-                print(f'Error: El país "{pais_eliminar}" no está en la lista.')
+                print(f'El país "{pais_eliminar}" no está en la lista.')
             else:
                 lista_paises.remove(pais_eliminar)
-                print(f'Confirmación: Se ha eliminado "{pais_eliminar}" correctamente.')
+                print(f'Se ha eliminado "{pais_eliminar}" correctamente.')
                 print("Lista de países actual:", lista_paises)
                 print("\n")
+                operacion_correcta = True
 
         elif respuesta == 5:
             opcion_salir = True
@@ -91,12 +94,9 @@ while True:
         total_ejecuciones += 1
         print(f"Número de ejecuciones del menú: {total_ejecuciones}")
 
-        try:
-            if 'operacion_correcta' in locals() and operacion_correcta and not opcion_salir:
-                print("#" * 70)
-                print("\n")
-        except NameError:
-            pass
+        if operacion_correcta and not opcion_salir:
+            print("#" * 70)
+            print("\n")
 
 print("\nMuchas gracias por utilizar el programa!")
 print(f"Número total de intentos: {total_ejecuciones}")
